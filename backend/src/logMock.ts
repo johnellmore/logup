@@ -1,3 +1,5 @@
+import { LogPayload } from "./types.ts";
+
 const nouns = ["world", "country", "state", "planet", "galaxy", "universe"];
 const browsers = ["firefox", "brave", "chrome", "safari", "konqueror", "lynx"];
 
@@ -10,7 +12,7 @@ function num(max: number) {
   return Math.ceil(Math.random() * max);
 }
 
-export function generateMockLogEntry() {
+export function generateMockLogEntry(): LogPayload {
   const entry = {
     timestamp: new Date().toISOString(),
     message: `Hello ${pick(nouns)}`,
