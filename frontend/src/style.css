@@ -10,9 +10,14 @@ body {
     margin: 0;
 }
 
+#wrap {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 #filterbar {
-    position: sticky;
-    top: 0;
+    flex: 0 0 auto;
     background-color: #ccc;
     padding: 0.4rem 0.5rem;
     display: flex;
@@ -23,6 +28,11 @@ body {
     flex: 0 0 auto;
     font-size: 1em;
     font-weight: bold;
+}
+
+#main {
+    flex: 1 1 auto;
+    overflow: auto;
 }
 
 #filter {
@@ -55,4 +65,11 @@ body {
     padding: 0 0.5em;
     border-bottom: 1px solid #ddd;
     text-overflow: ellipsis;
+}
+
+#foot {
+    flex: 0 0 auto;
+    font-size: 0.8em;
+    padding: 0 0.5rem;
+    background-color: #ccc;
 }
