@@ -10,22 +10,19 @@ body {
     margin: 0;
 }
 
-h1 {
-    margin: 0;
-    font-size: 1.2rem;
-}
-
-#top {
-    /* border-bottom: 1px solid #ccc; */
-    padding: 0.2rem 0.5rem;
-}
-
 #filterbar {
     position: sticky;
     top: 0;
     background-color: #ccc;
-    padding: 0.2rem 0.5rem;
+    padding: 0.4rem 0.5rem;
     display: flex;
+}
+
+#logo {
+    margin: 0 0.5rem 0 0;
+    flex: 0 0 auto;
+    font-size: 1em;
+    font-weight: bold;
 }
 
 #filter {
@@ -33,7 +30,7 @@ h1 {
     flex-grow: 1;
     border: 1px solid #999;
     font-family: inherit;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 #log-table {
@@ -45,15 +42,17 @@ h1 {
 }
 
 #log-headings th {
+    padding: 0 0.5em;
     text-align: left;
     border-bottom: 1px solid #999;
 }
 
 #log-headings th[data-colpath="timestamp"] {
-    width: 16em;
+    width: 15em;
 }
 
 #log-entries td {
+    padding: 0 0.5em;
     border-bottom: 1px solid #ddd;
     text-overflow: ellipsis;
 }

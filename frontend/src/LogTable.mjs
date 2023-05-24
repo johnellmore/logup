@@ -22,7 +22,13 @@ export class LogTable {
     for (const colPath of colPaths) {
       const th = document.createElement("th");
       th.setAttribute("data-colpath", colPath);
-      th.textContent = colPath;
+      let label;
+      if (colPath === "timestamp") {
+        label = "timestamp (UTC)";
+      } else {
+        label = colPath;
+      }
+      th.textContent = label;
       this.#columns.set(colPath, th);
     }
     this.#headerRow.replaceChildren(...this.#columns.values());
@@ -30,10 +36,10 @@ export class LogTable {
 
   #rowForLog(logEntry) {
     const row = document.createElement("tr");
-    for (const [colPath, th] of this.#columns) {
+    for (const colPath of this.#columns.keys()) {
       let value;
       if (colPath === "timestamp") {
-        value = logEntry.timestamp;
+        value = formatTimestamp(logEntry.timestamp);
       } else if (colPath === "message") {
         value = logEntry.message;
       } else {
@@ -46,4 +52,8 @@ export class LogTable {
     }
     return row;
   }
+}
+
+function formatTimestamp(ts) {
+  return ts.toISOString().replace("T", " ").replace("Z", "");
 }

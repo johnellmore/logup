@@ -7,7 +7,16 @@ export class LogEntry {
     const { logId, payload } = json;
     this.#logId = logId;
     this.#payload = payload;
-    this.#timestamp = this.#payload.timestamp ?? new Date().toISOString();
+
+    if (this.#payload.timestamp) {
+      const ms = Date.parse(this.#payload.timestamp);
+      if (ms) {
+        this.#timestamp = new Date(ms);
+      }
+    }
+    if (!this.#timestamp) {
+      this.#timestamp = new Date();
+    }
   }
 
   get payload() {

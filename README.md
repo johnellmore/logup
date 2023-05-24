@@ -1,5 +1,5 @@
-# diaper
+# logup
 
-*Collect your app's logs and metrics.*
+_A no-config, streaming webview for logs_
 
-diaper is no-configuration log collection and examination application.
+logup streams your log entries in real-time into a web GUI with live searching and filtering. Logs can be passed into logup via stdin, syslog (and others TBD).
