@@ -35,3 +35,25 @@ h1 {
     font-family: inherit;
     font-size: 1.2em;
 }
+
+#log-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8em;
+    /* Monospace Code stack from https://modernfontstacks.com/ */
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+}
+
+#log-headings th {
+    text-align: left;
+    border-bottom: 1px solid #999;
+}
+
+#log-headings th[data-colpath="timestamp"] {
+    width: 16em;
+}
+
+#log-entries td {
+    border-bottom: 1px solid #ddd;
+    text-overflow: ellipsis;
+}
