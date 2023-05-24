@@ -1,4 +1,4 @@
-# logup
+# logup (heavily WIP)
 
 _A no-config, streaming webview for logs_
 
