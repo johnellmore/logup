@@ -14,7 +14,7 @@ export class LogTable {
 
   push(logEntries) {
     const rows = logEntries.map((logEntry) => this.#rowForLog(logEntry));
-    this.tbody.append(...rows);
+    this.tbody.prepend(...rows);
   }
 
   setColumns(colPaths) {
