@@ -59,6 +59,7 @@ export class LogTable extends EventTarget {
     // hack: attach the log entry to the DOM object, so we can reuse it in case
     // we need to show its details or adjust its columns
     row._logEntry = logEntry;
+
     for (const colPath of this.#columns.keys()) {
       let value;
       if (colPath === "timestamp") {
@@ -73,6 +74,14 @@ export class LogTable extends EventTarget {
       row.appendChild(cell);
       cell.textContent = value;
     }
+
+    row.addEventListener("click", (ev) => {
+      console.log(logEntry);
+      const event = new CustomEvent("rowclick", {
+        detail: logEntry,
+      });
+      this.dispatchEvent(event);
+    });
     return row;
   }
 }
