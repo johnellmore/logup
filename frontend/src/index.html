@@ -22,10 +22,7 @@
       <div id="main">
         <div id="facets"></div>
         <div id="logs">
-          <table id="log-table">
-            <thead id="log-headings"></thead>
-            <tbody id="log-entries"></tbody>
-          </table>
+          <table id="log-table"></table>
         </div>
       </div>
       <div id="foot">
@@ -37,8 +34,7 @@
       import { initializeInterface } from "./lib.mjs";
 
       initializeInterface({
-        tableThead: document.getElementById("log-headings"),
-        tableTbody: document.getElementById("log-entries"),
+        tableEl: document.getElementById("log-table"),
         filterInput: document.getElementById("filter"),
         detailPane: document.getElementById("detail"),
       });

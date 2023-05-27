@@ -2,15 +2,13 @@ import { LogStreamer } from "./LogStreamer.mjs";
 import { LogTable } from "./LogTable.mjs";
 
 export function initializeInterface({
-  tableThead,
-  tableTbody,
+  tableEl,
   filterInput,
   detailPane,
 }) {
   const stream = new LogStreamer();
-  const logTable = new LogTable(tableThead, tableTbody);
+  const logTable = new LogTable({ tableEl, maxSize: 100 });
 
-  logTable.init();
   logTable.setColumns(["timestamp", "message"]);
   stream.addEventListener('logs', (ev) => {
     logTable.push(ev.detail);

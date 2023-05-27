@@ -1,20 +1,39 @@
-export class LogTable {
+export class LogTable extends EventTarget {
+  #tableEl;
+  #maxSize;
+  #tbody;
   #headerRow;
   #columns = new Map();
+  #logs = [];
 
-  constructor(tableThead, tableTbody) {
-    this.thead = tableThead;
-    this.tbody = tableTbody;
+  constructor({ tableEl, maxSize }) {
+    super();
+    this.#tableEl = tableEl;
+    this.#maxSize = maxSize;
+    this.#initDom();
   }
 
-  init() {
+  #initDom() {
+    const thead = document.createElement("thead");
+    thead.id = "log-headings";
+    this.#tableEl.appendChild(thead);
+
     this.#headerRow = document.createElement("tr");
-    this.thead.appendChild(this.#headerRow);
+    thead.appendChild(this.#headerRow);
+
+    this.#tbody = document.createElement("tbody");
+    this.#tbody.id = "log-entries";
+    this.#tableEl.appendChild(this.#tbody);
   }
 
   push(logEntries) {
     const rows = logEntries.map((logEntry) => this.#rowForLog(logEntry));
-    this.tbody.prepend(...rows);
+    rows.forEach(row => {
+      this.#tbody.prepend(row);
+      if (this.#tbody.children.length > this.#maxSize) {
+        this.#tbody.removeChild(this.#tbody.lastChild);
+      }
+    });
   }
 
   setColumns(colPaths) {
@@ -36,6 +55,10 @@ export class LogTable {
 
   #rowForLog(logEntry) {
     const row = document.createElement("tr");
+
+    // hack: attach the log entry to the DOM object, so we can reuse it in case
+    // we need to show its details or adjust its columns
+    row._logEntry = logEntry;
     for (const colPath of this.#columns.keys()) {
       let value;
       if (colPath === "timestamp") {

@@ -1,9 +1,5 @@
 import { LogEntry } from "./LogEntry.mjs";
 
-function makeLogsEvent(decodedJson) {
-
-}
-
 export class LogStreamer extends EventTarget {
   #eventSource;
   #lastLogId;
